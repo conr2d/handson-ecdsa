@@ -4,6 +4,10 @@ export function uint32ToUint8Array(n) {
   return new Uint8Array(new Uint32Array([n]).buffer);
 }
 
+export function uint8ArrayToUint32(bytes) {
+  return new DataView(bytes.buffer).getUint32(0);
+}
+
 export function randomBytes(size) {
   const quotient = Math.floor(size / 4);
   const remainder = size % 4;
