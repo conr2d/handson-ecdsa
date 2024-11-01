@@ -27,3 +27,19 @@ export function randomBytes(size) {
 export {
   random,
 }
+
+export async function getTransactionCount(address) {
+  const res = await fetch('https://rpc.sepolia.org', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      method: 'eth_getTransactionCount',
+      id: 0,
+      params: [address, 'latest'],
+    }),
+  });
+  return (await res.json()).result;
+}
